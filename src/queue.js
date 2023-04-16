@@ -18,7 +18,6 @@ const { ListNode } = require('../extensions/list-node.js');
 class Queue {
   constructor() {
     this.head = null;
-    this.length = 0;
   }
 
   enqueue(value) {
@@ -29,48 +28,36 @@ class Queue {
         return new ListNode(value);
       }
 
-      if (node && node.next === null ){
+      if (!node.next){
+        node.next = new ListNode(value);
         return node
       } 
       
-      if (node && node.next){
-
-        while (!node.next) {
-          node = node.next
-        }
-      return node
+      if (node.next){
+        node.next = add(node.next, value)
+        return node
       }
-        
     }
   }
 
   getUnderlyingList() {
-    this.head = getItems(this.head)
-    function getItems(node){
-      for (let i=0; i < node.length ; i++){
-        console.log(node)
-      }
-    return;     
-    }
-
+    return this.head
   }
 
 
   dequeue() {
-    this.head = deleteItem(this.head)
-
-    function deleteItem (node) {
-      if (!node) {
-        return;
-      }
-      
-      let current = node;
-      node = current.next;
-      current = null;
-      return node
+    if(!this.head) {
+      return;
     }
-  }
+
+      const topElement = this.head.value;
+      this.head = this.head.next;
+      
+      return topElement
+    }
+
 }
+
 
 module.exports = {
   Queue

@@ -15,23 +15,23 @@ class BinarySearchTree {
     return this.rootVal;
   }
 
-  add(data) {
-    this.rootVal = insert(this.rootVal, data);
+  add(value) {
+    this.rootVal = insert(this.rootVal, value);
 
-    function insert(node, data){
+    function insert(node, value){
       if (!node) {
-        return new Node(data);
+        return new Node(value);
       }
 
-      if (node.data === data) {
+      if (node.data === value) {
         return node;
       }
 
-      if (data < node.data) {
-        node.left = insert(node.left, data);
+      if (value < node.data) {
+        node.left = insert(node.left, value);
       }
       else {
-        node.right = insert(node.right, data);
+        node.right = insert(node.right, value);
       }
       return node;
     }
@@ -78,7 +78,6 @@ class BinarySearchTree {
   }
 
   remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
